@@ -100,7 +100,10 @@ BoldItalicFont=OpenSans-BoldItalic.ttf
 ]{OpenSans-Regular.ttf}
 
 \usepackage{xltxtra}
-\newfontface\emojiFont {Some-Font-with-emoji-etc}
+\newfontface\emojiFont {seguisym.ttf} % Segoe UI Sybol should have even better support
+
+\catcode `\ᚊ=\active
+\protected\def ᚊ{\leavevmode{\emojiFont ᚊ}}
 
 
 % Allows code to be easily formatted and compiled
@@ -207,7 +210,9 @@ Grant \textsc{Moyer}\\[3cm]
 \section{Experimental Approach}
     The assignment consisted of 6 parts, I through VI. Each part built upon the previous part, either by directly using components from the previous part or by extending concepts covered in the previous part.
     
-    Part~I introduced connecting ports and signals together by requiring each switch, SW0 through SW17, be connected to a built in LED. in VHDL, an connection is represented as a signal assignment: 
+    Part~I introduced connecting ports and signals together by requiring each switch, SW0 through SW17, be connected to a built in LED. in VHDL, an connection is represented as a signal assignment: \lstinline{signal1 <= signal2}.
+    
+    Part~II built off of Part~I by connecting switches to a multiplexer. The multiplexer was made with behavioral VHDL:
     
     \begin{lstlisting}
     %put the code here.
@@ -216,9 +221,7 @@ Grant \textsc{Moyer}\\[3cm]
     
 
 \section{Results}
-    The processor worked as intended in both simulation and hardware. All the instructions produced correct results, including jump and RAM store and load instructions. \Table{sample} shows the results of running instruction set \sfrac{1}{3}. Note that at one point, the process counter appears to skip because an incorrect instruction was entered and is not shown in the table. Also note, that an ADDI operation was substituted for an ANDI operation due to another incorrect instruction entry.
-    
-    When the instructions were first run, the intended results were not achieved, but after a short time debugging, it was determined that the RAM chip was behaving incorrectly. When A new RAM chip was used, the instructions behaved correctly.
+    All parts worked as indended.
     
     \begin{table}[ht]
         \centering
