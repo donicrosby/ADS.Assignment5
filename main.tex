@@ -105,6 +105,10 @@ BoldItalicFont=OpenSans-BoldItalic.ttf
 \catcode `\ᚊ=\active
 \protected\def ᚊ{\leavevmode{\emojiFont ᚊ}}
 
+\catcode `\🕚=\active
+\protected\def 🕚{\leavevmode{\emojiFont 🕚}}
+
+
 
 % Allows code to be easily formatted and compiled
 \usepackage{listings}
@@ -260,7 +264,7 @@ Grant \textsc{Moyer}\\[3cm]
             After a reset of the processor and inputting the control word from above. The if M is high it causes the ALU to be in the logic mode rather than arithmetic. That means that the \Bit[n]{C} is irrelevant as it becomes a don't care. The function selected is the F=1, there is no data read in from the MUX. Because of the selected function it will output the same output as in the previous function or F=1.
 
     \subsection{Grant}
-        \subsubsection{\symbol{"1F55A}. Perform the following instruction code and explain the result.}
+        \subsubsection{🕚. Perform the following instruction code and explain the result.}
             {\centering%
             \begin{tabular}{|c|c|c|c|c|c|c|} \hline
                 \multicolumn{2}{|c|}{\bf Odd Byte} & \multicolumn{5}{c|}{\bf Even Byte}  \\ \hline
