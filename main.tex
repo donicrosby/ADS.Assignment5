@@ -1,0 +1,272 @@
+\documentclass{scrreprt}
+
+% Document information
+%\title{Advance Digital Systems: Assignment 1}
+%\subtitle{Group 9}
+%\author{Doni Crosby \and Grant Moyer}
+%\date{2016--12--13}
+
+% Use Palatino Font
+\usepackage{tgpagella,eulervm}
+
+% Use 1 in margins
+\usepackage[letterpaper, margin=1in]{geometry}
+
+% fixme notes
+\usepackage{fixme}
+\fxsetup{
+    status=draft,
+    layout=margin,
+}
+
+% Unit formating
+\usepackage[binary-units, detect-all=true]{siunitx}
+
+% mars symbol
+\usepackage[nointegrals]{wasysym}
+
+% diagonal fraction
+\usepackage{xfrac}
+
+% Rotations for figure
+\usepackage{rotating}
+
+% Refrence Links
+\usepackage{hyperref}
+\usepackage{bookmark}
+
+% No section numbers
+\makeatletter
+\renewcommand\@seccntformat[1]{}
+\makeatother
+
+% Refrences
+\newcommand{\FigLabel}[1]{\label{fig:#1}}
+\newcommand{\Figure}[1]{Figure~\ref{fig:#1}}
+\newcommand{\TabLabel}[1]{\label{tab:#1}}
+\newcommand{\Table}[1]{Table~\ref{tab:#1}}
+
+% Figure arrays
+\usepackage{subcaption}
+
+% No paragraph indents
+\usepackage{parskip}
+
+% Better math
+\usepackage{amsmath}
+
+% Boolean operators
+\DeclareMathOperator{\NOT}{\neg}
+\DeclareMathOperator{\XOR}{\oplus}
+\DeclareMathOperator{\AND}{\wedge}
+\DeclareMathOperator{\OR}{\vee}
+\DeclareMathOperator{\NAND}{\bar{\wedge}}
+\DeclareMathOperator{\NOR}{\bar{\vee}}
+
+% Source for figures (if needed)
+\newcommand{\source}[1]{\caption*{Source: {#1}} }
+
+% Figures, equations, and tables don't use chapter numbers
+\usepackage{chngcntr}
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
+\counterwithout{equation}{chapter}
+
+% Component counts
+\newcommand{\component}[2]{(#1) #2}
+
+% Insert images
+\usepackage{graphicx}
+
+% Weird FTQ number
+\newlength\Wwidth
+\setlength\Wwidth{1.1pt}
+\newlength\Wheight
+\settoheight\Wheight{H}
+\newcommand{\WeirdNumber}{%
+    \rule{\Wwidth}{\Wheight}\hspace{\Wwidth}%
+    \rule{\Wwidth}{\Wheight}\hspace{\Wwidth}%
+    \rule{\Wwidth}{\Wheight}\hspace{\Wwidth}%
+    \rule{\Wwidth}{\Wheight}%
+}
+
+
+
+\usepackage{fontspec}
+\setsansfont[
+BoldFont=OpenSans-Bold.ttf,
+ItalicFont=OpenSans-Italic.ttf,
+BoldItalicFont=OpenSans-BoldItalic.ttf
+]{OpenSans-Regular.ttf}
+
+\usepackage{xltxtra}
+\newfontface\emojiFont {Some-Font-with-emoji-etc}
+
+
+% Allows code to be easily formatted and compiled
+\usepackage{listings}
+\usepackage{color}
+\lstset{frame=tb,
+  language=VHDL,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+% Allows for importation of unicode characters
+
+%\DeclareUnicodeCharacter{1F55A}{\grantFTQ}
+
+\begin{document}
+%\maketitle
+
+% Title Page
+\begin{titlepage}
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+\textsc{\LARGE University of Massachusetts at Lowell}\\[1.5cm] % Name of your university/college
+\textsc{\Large Advanced Digital Systems}\\[0.5cm] % Major heading such as course name
+\textsc{\large Group 9}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries Assignment 5:\\ Introduction to FGPAs \& Tutorial}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\Large \emph{Authors:}\\
+Doni \textsc{Crosby}\\
+Grant \textsc{Moyer}\\[3cm]
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large December 13, 2016}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+%\includegraphics{Logo}\\[1cm] % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+\section{Objective}
+   The objective of this project was to follow the tutorials for the Altera DE2 development board to understand how to program the FPGA using VHDL.
+
+\section{Equipment}
+    % \subsection{Active components}
+    %     \begin{itemize}
+    %         \item \component{1}{SN7489 16~address by \SI{4}{\bit} RAM}
+    %         \item \component{1}{74LS157 Quad \(2 \times 1\) multiplexer}
+    %         \item \component{1}{74LS181 ALU}
+    %         \item \component{1}{74LS195 \SI{4}{\bit} shift register}
+    %         \item \component{1}{74LS569 \SI{4}{\bit} counter}
+    %         \item \component{2}{74LS157 BCD to seven segment decoder}
+    %         \item \component{1}{LN526RA Two digit seven segment display}
+    %     \end{itemize}
+    
+    % \subsection{Passive Components}
+    %     \begin{itemize} 
+    %         \item Various pull up resistors
+    %         \item \component{2}{17DIP8SS 16 Pin dip switch}
+    %         \item \component{1}{Toggle switch}
+    %     \end{itemize}
+    
+    \subsection{Lab Equipment}
+        \begin{itemize}
+            \item Altera DE2 FPGA Devoloplment Board
+        \end{itemize}
+
+\section{Experimental Approach}
+    The assignment consisted of 6 parts, I through VI. Each part built upon the previous part, either by directly using components from the previous part or by extending concepts covered in the previous part.
+    
+    Part~I introduced connecting ports and signals together by requiring each switch, SW0 through SW17, be connected to a built in LED. in VHDL, an connection is represented as a signal assignment: 
+    
+    \begin{lstlisting}
+    %put the code here.
+    \end{lstlisting}
+    
+    
+
+\section{Results}
+    The processor worked as intended in both simulation and hardware. All the instructions produced correct results, including jump and RAM store and load instructions. \Table{sample} shows the results of running instruction set \sfrac{1}{3}. Note that at one point, the process counter appears to skip because an incorrect instruction was entered and is not shown in the table. Also note, that an ADDI operation was substituted for an ANDI operation due to another incorrect instruction entry.
+    
+    When the instructions were first run, the intended results were not achieved, but after a short time debugging, it was determined that the RAM chip was behaving incorrectly. When A new RAM chip was used, the instructions behaved correctly.
+    
+    \begin{table}[ht]
+        \centering
+        \begin{tabular}{|l|c|c|l|} \hline
+            \bf Instruction & \multicolumn{1}{|l|}{\bf ACC Display} & \multicolumn{1}{|l|}{\bf PC Display} & \bf Notes  \\ \hline
+            LDI 3   & 3  & 1 & \\ \hline
+            STORE 2 & 3  & 2 & \\ \hline
+            LDI 4   & 4  & 3 & \\ \hline
+            LOAD 2  & 3  & 4 & \\ \hline
+            LDI 9   & 9  & 6 & incorrect instruction entered, not shown\\ \hline
+            SUB 2   & 7  & 7 & \\ \hline
+            JIFP    & 7  & 8 & \\ \hline
+            ADDI 4  & 11 & 9 & ADDI instruction was originally ANDI\\ \hline
+            JMPZ    & 11 & 0 & \\ \hline
+            LDI 0   & 0  & 1 & \\ \hline
+            JIFZ    & 0  & 0 & \\ \hline
+        \end{tabular}
+        \caption{Sample Instruction Sequence}
+        \TabLabel{sample}
+    \end{table}
+    
+\section{Conclusions}
+    If possible, a processor implementation can be greatly simplified by carefully choosing the instruction encoding; the more similar the instructions are to the control words, the simpler the implementation. For example, some complexity in design arose because a "jump" bit could not be included in the instruction. Whether or not an instruction was a jump needed to be determined through combinational logic.
+
+\section{Fault Tolerance Questions}
+    \subsection{Doni}
+        \subsubsection{ᚊ. Perform the following instruction code and explain the result.}
+            {\centering%
+            \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+                \multicolumn{2}{|c|}{\bf Odd Byte} & \multicolumn{5}{c|}{\bf Even Byte}  \\ \hline
+                DB   & RAM  & MUX & \(\overline{\text{WE}}\) & \Bit[n]{C} & M & S    \\ \hline
+                1001 & 0000 & 1   & 0                        & 1          & 1 & 0011 \\ \hline
+            \end{tabular}\par
+            }
+            
+            After a reset of the processor and inputting the control word from above. The if M is high it causes the ALU to be in the logic mode rather than arithmetic. That means that the \Bit[n]{C} is irrelevant as it becomes a don't care. The function selected is the F=1, there is no data read in from the MUX. Because of the selected function it will output the same output as in the previous function or F=1.
+
+    \subsection{Grant}
+        \subsubsection{\symbol{"1F55A}. Perform the following instruction code and explain the result.}
+            {\centering%
+            \begin{tabular}{|c|c|c|c|c|c|c|} \hline
+                \multicolumn{2}{|c|}{\bf Odd Byte} & \multicolumn{5}{c|}{\bf Even Byte}  \\ \hline
+                DB   & RAM  & MUX & \(\overline{\text{WE}}\) & \Bit[n]{C} & M & S    \\ \hline
+                0100 & 1101 & 1   & 1                        & 0          & 1 & 0000 \\ \hline
+            \end{tabular}\par
+            }
+            
+            After resetting the processor, performing the operation results in an accumulator containing F and a process counter containing 1. Repeating the instruction results in the accumulator alternating between 0 and F, and the process counter incrementing. This is because S, the operation code, along with M, the mode bit, represents the ALU operation \(\NOT{A}\). Since the \(A\) operand is the accumulator, the instruction inverts the accumulator.
+
+            
+\end{document}
